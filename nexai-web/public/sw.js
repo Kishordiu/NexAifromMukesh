@@ -1,13 +1,7 @@
 const CACHE_NAME = 'diumed-static-v1';
 const DYNAMIC_CACHE_NAME = 'diumed-dynamic-v1';
 
-const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/favicon.ico',
-  '/apple-touch-icon.png'
-];
+const STATIC_ASSETS = ['/', '/index.html'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -68,3 +62,4 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+

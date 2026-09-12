@@ -1,22 +1,9 @@
 {
- "name": "DiuMed Maternal Health",
- "short_name": "DiuMed",
- "description": "Zero-Hardware Maternal Health Monitoring OS",
- "start_url": "/",
- "display": "standalone",
- "background_color": "#ffffff",
- "theme_color": "#ffffff",
- "icons": [
- {
- "src": "/diumed-icon-192.png",
- "sizes": "192x192",
- "type": "image/png"
- },
- {
- "src": "/diumed-icon-512.png",
- "sizes": "512x512",
- "type": "image/png",
- "purpose": "any maskable"
- }
- ]
+  "name": "DiuMed Maternal Health",
+  "short_name": "DiuMed",
+  "description": "Zero-Hardware Maternal Health Monitoring OS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
 }
