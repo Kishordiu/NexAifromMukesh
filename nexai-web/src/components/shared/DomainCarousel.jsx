@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { getCache, setCache } from '../../../lib/offlineStore';
+import { getCache, setCache } from '../../lib/offlineStore';
 import { api } from '../../lib/api';
 import GlassSurface from '../ui/GlassSurface';
 import Skeleton from '../ui/Skeleton';

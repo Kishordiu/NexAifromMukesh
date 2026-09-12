@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { getCache, setCache } from '../../../lib/offlineStore';
+import { getCache, setCache } from '../../lib/offlineStore';
 import { api } from '../../lib/api';
 import GlassSurface from '../ui/GlassSurface';
 import Skeleton from '../ui/Skeleton';
