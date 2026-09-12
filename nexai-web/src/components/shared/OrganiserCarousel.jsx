@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { api } from '../../../lib/api';
+import { api } from '../../lib/api';
 import GlassSurface from '../ui/GlassSurface';
 import Skeleton from '../ui/Skeleton';
 import { ChevronLeft, ChevronRight, User } from 'lucide-react';
