@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { getCache, setCache } from '../../../lib/offlineStore';
 import { api } from '../../lib/api';
 import GlassSurface from '../ui/GlassSurface';
 import Skeleton from '../ui/Skeleton';
@@ -54,8 +55,15 @@ export default function OrganiserCarousel() {
   useEffect(() => {
     const fetchOrganisers = async () => {
       try {
+        const cached = await getCache('organisers_list');
+        if (cached) {
+          setOrganisers(cached);
+          setLoading(false);
+        }
+        
         const data = await api.organisers.getAll();
         setOrganisers(data || []);
+        await setCache('organisers_list', data || []);
       } catch (err) {
         console.error('Failed to load organisers', err);
       } finally {

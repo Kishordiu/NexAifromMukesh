@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { getCache, setCache } from '../../../lib/offlineStore';
 import { api } from '../../lib/api';
 import GlassSurface from '../ui/GlassSurface';
 import Skeleton from '../ui/Skeleton';
@@ -7,15 +8,12 @@ import MotionReveal from '../ui/MotionReveal';
 import { ArrowRight, ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
 
 const DomainCard = ({ domain, index, scrollX }) => {
-  // We can use scrollX to drive parallax if we want, but for a simple draggable carousel we rely on standard framer-motion drag or flex scrolling.
-  
   return (
     <GlassSurface 
       level={2} 
       hover 
       className="w-72 h-80 flex-shrink-0 rounded-3xl flex flex-col overflow-hidden relative group"
     >
-      {/* Image / Fallback Container */}
       <div className="h-40 w-full bg-slate-100 relative overflow-hidden border-b border-white/50">
         {domain.image ? (
           <img 
@@ -37,7 +35,6 @@ const DomainCard = ({ domain, index, scrollX }) => {
         )}
       </div>
 
-      {/* Content */}
       <div className="p-5 flex flex-col flex-1">
         <h3 className="text-lg font-bold text-slate-800 tracking-tight leading-tight mb-2 line-clamp-1">
           {domain.title}
@@ -61,8 +58,15 @@ export default function DomainCarousel() {
   useEffect(() => {
     const fetchDomains = async () => {
       try {
+        const cached = await getCache('domains_list');
+        if (cached) {
+          setDomains(cached);
+          setLoading(false); // Render cache immediately
+        }
+        
         const data = await api.domains.getAll();
         setDomains(data || []);
+        await setCache('domains_list', data || []);
       } catch (err) {
         console.error('Failed to load domains', err);
       } finally {
