@@ -8,7 +8,7 @@ import AppLayout from './layouts/AppLayout';
 import AuthLayout from './layouts/AuthLayout';
 import ProtectedRoute from './components/navigation/ProtectedRoute';
 import HuskyLogin from './components/auth/HuskyLogin';
-import MotherDashboard from './features/dashboard/pages/MotherDashboard';
+import PatientDashboard from './features/dashboard/pages/PatientDashboard';
 import VaultSettings from './features/vault/pages/VaultSettings';
 import VitalsScan from './features/vitals/pages/VitalsScan';
 import LabOCR from './features/lab-ocr/pages/LabOCR';
@@ -48,7 +48,7 @@ function AppRoutes() {
  {/* Protected App Routes */}
  <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
  <Route path="/" element={<Navigate to="/home" replace />} />
- <Route path="/home" element={<MotherDashboard />} />
+ <Route path="/home" element={<PatientDashboard />} />
  <Route path="/scan" element={<VitalsScan />} />
  <Route path="/scan/anemia" element={<AnemiaScan />} />
  <Route path="/scan/sclera" element={<ScleraScan />} />
