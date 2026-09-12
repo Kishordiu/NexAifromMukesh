@@ -107,6 +107,34 @@ const initSchema = () => {
       verification_id TEXT UNIQUE,
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
+
+    CREATE TABLE IF NOT EXISTS domains (
+      id TEXT PRIMARY KEY,
+      title TEXT NOT NULL,
+      description TEXT,
+      category TEXT,
+      image TEXT,
+      slug TEXT UNIQUE,
+      status TEXT DEFAULT 'draft',
+      featured INTEGER DEFAULT 0,
+      display_order INTEGER DEFAULT 0,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS organisers (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      role TEXT,
+      organization TEXT,
+      description TEXT,
+      image TEXT,
+      contact_details TEXT,
+      status TEXT DEFAULT 'active',
+      display_order INTEGER DEFAULT 0,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
   `;
   
   db.exec(schema);

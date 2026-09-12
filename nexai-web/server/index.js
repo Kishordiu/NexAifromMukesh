@@ -9,6 +9,8 @@ const triageRoutes = require('./routes/triage');
 const riskRoutes = require('./routes/risk');
 const reportsRoutes = require('./routes/reports');
 const clinicianRoutes = require('./routes/clinician');
+const domainsRoutes = require('./routes/domains');
+const organisersRoutes = require('./routes/organisers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,22 +27,24 @@ app.use('/api/triage', triageRoutes);
 app.use('/api/risk', riskRoutes);
 app.use('/api/reports', reportsRoutes);
 app.use('/api/clinician', clinicianRoutes);
+app.use('/api/domains', domainsRoutes);
+app.use('/api/organisers', organisersRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'NexAI API', timestamp: new Date().toISOString() });
+ res.json({ status: 'ok', service: 'DiuMed API', timestamp: new Date().toISOString() });
 });
 
 // Global error handler
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Internal Server Error', error: process.env.NODE_ENV === 'development' ? err.message : undefined });
+ console.error(err.stack);
+ res.status(500).json({ message: 'Internal Server Error', error: process.env.NODE_ENV === 'development' ? err.message : undefined });
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 NexAI Server running on http://localhost:${PORT}`);
-  console.log(`Database connected in WAL mode.`);
-  if (!process.env.DEEPSEEK_API_KEY || process.env.DEEPSEEK_API_KEY === 'your-key-here') {
-    console.warn(`⚠️  WARNING: DEEPSEEK_API_KEY is not set. Triage service will return mock responses.`);
-  }
+ console.log(`🚀 DiuMed Server running on http://localhost:${PORT}`);
+ console.log(`Database connected in WAL mode.`);
+ if (!process.env.DEEPSEEK_API_KEY || process.env.DEEPSEEK_API_KEY === 'your-key-here') {
+ console.warn(`⚠️ WARNING: DEEPSEEK_API_KEY is not set. Triage service will return mock responses.`);
+ }
 });

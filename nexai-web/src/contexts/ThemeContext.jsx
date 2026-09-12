@@ -3,45 +3,43 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 const ThemeContext = createContext(null);
 
 const THEMES = {
-  care: {
-    accent: '#3b82f6',
-    accentRgb: '59, 130, 246',
-    label: 'Care Mode',
-    description: 'Default clinical monitoring'
+  clinical: {
+    accent: '#0EA5E9',      // clinical blue / cool cyan
+    accentRgb: '14, 165, 233',
+    label: 'Clinical Mode',
+    description: 'DiuMed core operating environment'
   },
-  rest: {
-    accent: '#f59e0b',
-    accentRgb: '245, 158, 11',
-    label: 'Rest Mode',
-    description: 'Low-contrast for nighttime'
+  calm: {
+    accent: '#14B8A6',      // subtle aqua
+    accentRgb: '20, 184, 166',
+    label: 'Calm Mode',
+    description: 'Reduced stimulus environment'
   },
-  clinician: {
-    accent: '#8b5cf6',
+  provider: {
+    accent: '#8B5CF6',      // restrained violet
     accentRgb: '139, 92, 246',
-    label: 'Clinician Mode',
-    description: 'Provider-facing purple theme'
+    label: 'Provider Mode',
+    description: 'Administrative and clinical oversight'
   }
 };
 
 export function ThemeProvider({ children }) {
   const [mode, setModeState] = useState(() => {
-    return localStorage.getItem('nexai_theme') || 'care';
+    return localStorage.getItem('diumed_theme') || 'clinical';
   });
 
-  // Apply theme as CSS custom properties on :root
   useEffect(() => {
-    const theme = THEMES[mode] || THEMES.care;
+    const theme = THEMES[mode] || THEMES.clinical;
     const root = document.documentElement;
 
     root.setAttribute('data-theme', mode);
     root.style.setProperty('--accent', theme.accent);
     root.style.setProperty('--accent-rgb', theme.accentRgb);
     
-    // Adjust meta theme-color for mobile chrome bar
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', mode === 'rest' ? '#1e293b' : '#ffffff');
+    if (meta) meta.setAttribute('content', '#ffffff'); // DiuMed stays clean white/glass
 
-    localStorage.setItem('nexai_theme', mode);
+    localStorage.setItem('diumed_theme', mode);
   }, [mode]);
 
   const setMode = useCallback((newMode) => {
@@ -60,8 +58,8 @@ export function ThemeProvider({ children }) {
     mode,
     setMode,
     cycleMode,
-    accent: THEMES[mode]?.accent || THEMES.care.accent,
-    themeInfo: THEMES[mode] || THEMES.care,
+    accent: THEMES[mode]?.accent || THEMES.clinical.accent,
+    themeInfo: THEMES[mode] || THEMES.clinical,
     availableThemes: THEMES,
   };
 

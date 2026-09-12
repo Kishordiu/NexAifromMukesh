@@ -21,54 +21,61 @@ import ReportDetail from './features/reports/pages/ReportDetail';
 import ClinicianDashboard from './features/clinician/pages/ClinicianDashboard';
 import PatientDetail from './features/clinician/pages/PatientDetail';
 
+import RoleGuard from './components/navigation/RoleGuard';
+import AdminDashboard from './features/admin/pages/AdminDashboard';
+import DomainsAdmin from './features/admin/pages/DomainsAdmin';
+import DomainEditor from './features/admin/pages/DomainEditor';
+import OrganisersAdmin from './features/admin/pages/OrganisersAdmin';
+import OrganiserEditor from './features/admin/pages/OrganiserEditor';
+
 const LoadingFallback = () => (
-  <div className="flex h-screen items-center justify-center">
-    <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin" />
-  </div>
+ <div className="flex h-screen items-center justify-center">
+ <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin" />
+ </div>
 );
 
 function AppRoutes() {
-  const { isAuthenticated } = useAuth();
-  
-  return (
-    <Suspense fallback={<LoadingFallback />}>
-      <Routes>
-        {/* Public Auth Routes */}
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<HuskyLogin />} />
-        </Route>
+ const { isAuthenticated } = useAuth();
+ 
+ return (
+ <Suspense fallback={<LoadingFallback />}>
+ <Routes>
+ {/* Public Auth Routes */}
+ <Route element={<AuthLayout />}>
+ <Route path="/login" element={<HuskyLogin />} />
+ </Route>
 
-        {/* Protected App Routes */}
-        <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<MotherDashboard />} />
-          <Route path="/scan" element={<VitalsScan />} />
-          <Route path="/scan/anemia" element={<AnemiaScan />} />
-          <Route path="/scan/sclera" element={<ScleraScan />} />
-          <Route path="/triage" element={<VoiceTriage />} />
-          <Route path="/ocr" element={<LabOCR />} />
-          <Route path="/reports" element={<ReportsList />} />
-          <Route path="/reports/:id" element={<ReportDetail />} />
-          <Route path="/settings" element={<VaultSettings />} />
-          <Route path="/emergency" element={<EmergencyFlow />} />
-          <Route path="/clinician" element={<ClinicianDashboard />} />
-          <Route path="/clinician/patient/:id" element={<PatientDetail />} />
-        </Route>
-      </Routes>
-    </Suspense>
-  );
+ {/* Protected App Routes */}
+ <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+ <Route path="/" element={<Navigate to="/home" replace />} />
+ <Route path="/home" element={<MotherDashboard />} />
+ <Route path="/scan" element={<VitalsScan />} />
+ <Route path="/scan/anemia" element={<AnemiaScan />} />
+ <Route path="/scan/sclera" element={<ScleraScan />} />
+ <Route path="/triage" element={<VoiceTriage />} />
+ <Route path="/ocr" element={<LabOCR />} />
+ <Route path="/reports" element={<ReportsList />} />
+ <Route path="/reports/:id" element={<ReportDetail />} />
+ <Route path="/settings" element={<VaultSettings />} />
+ <Route path="/emergency" element={<EmergencyFlow />} />
+ <Route path="/clinician" element={<ClinicianDashboard />} />
+ <Route path="/clinician/patient/:id" element={<PatientDetail />} />
+ </Route>
+ </Routes>
+ </Suspense>
+ );
 }
 
 export default function App() {
-  return (
-    <BrowserRouter>
-      <ThemeProvider>
-        <AuthProvider>
-          <SyncProvider>
-            <AppRoutes />
-          </SyncProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </BrowserRouter>
-  );
+ return (
+ <BrowserRouter>
+ <ThemeProvider>
+ <AuthProvider>
+ <SyncProvider>
+ <AppRoutes />
+ </SyncProvider>
+ </AuthProvider>
+ </ThemeProvider>
+ </BrowserRouter>
+ );
 }
