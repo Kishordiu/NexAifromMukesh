@@ -107,7 +107,7 @@ export default function AdminDashboard() {
               </div>
               <div className="text-left">
                 <h3 className="font-bold text-slate-800 tracking-tight">Manage Organisers</h3>
-                <p className="text-xs text-slate-500 mt-0.5">Add and update hackathon and event organisers</p>
+                <p className="text-xs text-slate-500 mt-0.5">Add and update medical platform organisers</p>
               </div>
             </div>
           </GlassSurface>
