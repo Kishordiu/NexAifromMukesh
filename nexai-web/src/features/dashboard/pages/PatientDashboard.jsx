@@ -22,10 +22,12 @@ export default function PatientDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [prof, meas] = await Promise.all([
-          api.patient.getProfile(),
-          api.patient.getMeasurements()
-        ]);
+        const prof = await api.patient.getProfile().catch(e => {
+          if (e.status === 404) return null;
+          throw e;
+        });
+        const meas = await api.patient.getMeasurements().catch(() => []);
+        
         setProfile(prof);
         setMeasurements(meas || []);
         

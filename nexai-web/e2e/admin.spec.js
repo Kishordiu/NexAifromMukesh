@@ -11,6 +11,13 @@ test.describe('DiuMed Admin Panel', () => {
       });
     });
 
+    await page.route('**/api/auth/me', async route => {
+      await route.fulfill({
+        status: 200,
+        json: { user: { id: 'admin1', email: 'admin@diumed.app', role: 'ADMIN' } }
+      });
+    });
+
     await page.route('**/api/patient/profile', async route => {
       await route.fulfill({ status: 200, json: { name: 'Admin User' } });
     });
