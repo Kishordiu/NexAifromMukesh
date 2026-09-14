@@ -1,9 +1,31 @@
 {
+<<<<<<< HEAD
+  "name": "NexAI Maternal Health",
+  "short_name": "NexAI",
+=======
   "name": "DiuMed Maternal Health",
   "short_name": "DiuMed",
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
   "description": "Zero-Hardware Maternal Health Monitoring OS",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
+<<<<<<< HEAD
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/nexai-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/nexai-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+=======
   "theme_color": "#ffffff"
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 }

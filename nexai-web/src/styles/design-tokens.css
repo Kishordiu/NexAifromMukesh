@@ -1,3 +1,70 @@
+<<<<<<< HEAD
+/* NexAI Design Tokens */
+:root {
+  /* 
+   * Background Layers
+   * Icy white base with subtle cool depth
+   */
+  --bg-app: #f4f7f9;
+  --bg-surface: #ffffff;
+  
+  /* 
+   * Medical Clinical Palette
+   * Calm, trusting, clear
+   */
+  --color-primary: #3b82f6;      /* Trust blue */
+  --color-primary-light: #60a5fa;
+  --color-success: #10b981;      /* Safe/Normal */
+  --color-warning: #f59e0b;      /* Monitor/Elevated */
+  --color-danger: #ef4444;       /* Urgent/Emergency */
+  --color-accent: #8b5cf6;       /* Premium AI interactions */
+
+  /* Text Hierarchy */
+  --text-display: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+
+  /* 
+   * Glassmorphism Levels
+   * Controlled blurs for hierarchy
+   */
+  --glass-blur-1: 12px;
+  --glass-blur-2: 16px;
+  --glass-blur-3: 24px;
+  --glass-blur-4: 36px;
+
+  --glass-bg-base: rgba(255, 255, 255, 0.45);
+  --glass-bg-hover: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  
+  /* 
+   * Structural Radii
+   * Strict scale
+   */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 30px;
+  --radius-hero: 36px;
+
+  /* Spacing Grid (multiples of 4) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Shadows for Depth */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.06);
+  --shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.08);
+  --shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.12);
+  --shadow-inner: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+=======
 /* DiuMed Design Tokens */
 :root {
  /* 
@@ -63,10 +130,22 @@
  --shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.08);
  --shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.12);
  --shadow-inner: inset 0 2px 4px rgba(255, 255, 255, 0.9);
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 }
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
+<<<<<<< HEAD
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+=======
  *, ::before, ::after {
  animation-delay: -1ms !important;
  animation-duration: 1ms !important;
@@ -76,4 +155,5 @@
  transition-duration: 0s !important;
  transition-delay: 0s !important;
  }
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 }

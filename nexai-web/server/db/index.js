@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+const { DatabaseSync } = require('node:sqlite');
+const path = require('path');
+const fs = require('fs');
+
+const dbPath = path.join(__dirname, 'nexai.db');
+const db = new DatabaseSync(dbPath);
+
+db.exec('PRAGMA journal_mode = WAL');
+=======
 const Database = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
@@ -6,6 +16,7 @@ const dbPath = path.join(__dirname, 'diumed.db');
 const db = new Database(dbPath);
 
 db.pragma('journal_mode = WAL');
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 
 const initSchema = () => {
   const schema = `
@@ -107,6 +118,8 @@ const initSchema = () => {
       verification_id TEXT UNIQUE,
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
+<<<<<<< HEAD
+=======
 
     CREATE TABLE IF NOT EXISTS domains (
       id TEXT PRIMARY KEY,
@@ -135,6 +148,7 @@ const initSchema = () => {
       created_at TEXT DEFAULT CURRENT_TIMESTAMP,
       updated_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
   `;
   
   db.exec(schema);

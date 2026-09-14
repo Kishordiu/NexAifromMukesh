@@ -9,8 +9,11 @@ const triageRoutes = require('./routes/triage');
 const riskRoutes = require('./routes/risk');
 const reportsRoutes = require('./routes/reports');
 const clinicianRoutes = require('./routes/clinician');
+<<<<<<< HEAD
+=======
 const domainsRoutes = require('./routes/domains');
 const organisersRoutes = require('./routes/organisers');
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -27,16 +30,35 @@ app.use('/api/triage', triageRoutes);
 app.use('/api/risk', riskRoutes);
 app.use('/api/reports', reportsRoutes);
 app.use('/api/clinician', clinicianRoutes);
+<<<<<<< HEAD
+
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', service: 'NexAI API', timestamp: new Date().toISOString() });
+=======
 app.use('/api/domains', domainsRoutes);
 app.use('/api/organisers', organisersRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
  res.json({ status: 'ok', service: 'DiuMed API', timestamp: new Date().toISOString() });
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 });
 
 // Global error handler
 app.use((err, req, res, next) => {
+<<<<<<< HEAD
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal Server Error', error: process.env.NODE_ENV === 'development' ? err.message : undefined });
+});
+
+app.listen(PORT, () => {
+  console.log(`🚀 NexAI Server running on http://localhost:${PORT}`);
+  console.log(`Database connected in WAL mode.`);
+  if (!process.env.DEEPSEEK_API_KEY || process.env.DEEPSEEK_API_KEY === 'your-key-here') {
+    console.warn(`⚠️  WARNING: DEEPSEEK_API_KEY is not set. Triage service will return mock responses.`);
+  }
+=======
  console.error(err.stack);
  res.status(500).json({ message: 'Internal Server Error', error: process.env.NODE_ENV === 'development' ? err.message : undefined });
 });
@@ -47,4 +69,5 @@ app.listen(PORT, () => {
  if (!process.env.DEEPSEEK_API_KEY || process.env.DEEPSEEK_API_KEY === 'your-key-here') {
  console.warn(`⚠️ WARNING: DEEPSEEK_API_KEY is not set. Triage service will return mock responses.`);
  }
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 });

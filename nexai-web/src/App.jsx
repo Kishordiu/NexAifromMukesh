@@ -8,7 +8,11 @@ import AppLayout from './layouts/AppLayout';
 import AuthLayout from './layouts/AuthLayout';
 import ProtectedRoute from './components/navigation/ProtectedRoute';
 import HuskyLogin from './components/auth/HuskyLogin';
+<<<<<<< HEAD
+import MotherDashboard from './features/dashboard/pages/MotherDashboard';
+=======
 import PatientDashboard from './features/dashboard/pages/PatientDashboard';
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 import VaultSettings from './features/vault/pages/VaultSettings';
 import VitalsScan from './features/vitals/pages/VitalsScan';
 import LabOCR from './features/lab-ocr/pages/LabOCR';
@@ -21,6 +25,58 @@ import ReportDetail from './features/reports/pages/ReportDetail';
 import ClinicianDashboard from './features/clinician/pages/ClinicianDashboard';
 import PatientDetail from './features/clinician/pages/PatientDetail';
 
+<<<<<<< HEAD
+const LoadingFallback = () => (
+  <div className="flex h-screen items-center justify-center">
+    <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin" />
+  </div>
+);
+
+function AppRoutes() {
+  const { isAuthenticated } = useAuth();
+  
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <Routes>
+        {/* Public Auth Routes */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<HuskyLogin />} />
+        </Route>
+
+        {/* Protected App Routes */}
+        <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<MotherDashboard />} />
+          <Route path="/scan" element={<VitalsScan />} />
+          <Route path="/scan/anemia" element={<AnemiaScan />} />
+          <Route path="/scan/sclera" element={<ScleraScan />} />
+          <Route path="/triage" element={<VoiceTriage />} />
+          <Route path="/ocr" element={<LabOCR />} />
+          <Route path="/reports" element={<ReportsList />} />
+          <Route path="/reports/:id" element={<ReportDetail />} />
+          <Route path="/settings" element={<VaultSettings />} />
+          <Route path="/emergency" element={<EmergencyFlow />} />
+          <Route path="/clinician" element={<ClinicianDashboard />} />
+          <Route path="/clinician/patient/:id" element={<PatientDetail />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ThemeProvider>
+        <AuthProvider>
+          <SyncProvider>
+            <AppRoutes />
+          </SyncProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  );
+=======
 import RoleGuard from './components/navigation/RoleGuard';
 import AdminDashboard from './features/admin/pages/AdminDashboard';
 import DomainsAdmin from './features/admin/pages/DomainsAdmin';
@@ -78,4 +134,5 @@ export default function App() {
  </ThemeProvider>
  </BrowserRouter>
  );
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 }

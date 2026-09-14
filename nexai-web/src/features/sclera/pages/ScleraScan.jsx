@@ -4,12 +4,21 @@ import { useCamera } from '../../camera/hooks/useCamera';
 import { CameraPreview } from '../../camera/components/CameraPreview';
 import { PermissionGate } from '../../camera/components/PermissionGate';
 import GlassSurface from '../../../components/ui/GlassSurface';
+<<<<<<< HEAD
+import Button from '../../../components/ui/Button';
+import { api } from '../../../lib/api';
+
+/**
+ * Sclera Jaundice Scanner — analyses yellow tint in the sclera (white of eye).
+ * Uses a simple yellow-channel ratio heuristic on a central ROI.
+=======
 import MotionReveal from '../../../components/ui/MotionReveal';
 import { api } from '../../../lib/api';
 import { ArrowLeft, Save, RefreshCw, Eye } from 'lucide-react';
 
 /**
  * Sclera Jaundice Scanner — analyses yellow tint in the sclera (white of eye).
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
  */
 export default function ScleraScan() {
   const navigate = useNavigate();
@@ -43,6 +52,10 @@ export default function ScleraScan() {
         const g = data[i + 1];
         const b = data[i + 2];
 
+<<<<<<< HEAD
+        // Yellow = high R + high G, low B
+=======
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
         const yellowness = ((r + g) / 2) / (b || 1);
         scanDataRef.current.yellowSum += yellowness;
         scanDataRef.current.count++;
@@ -91,6 +104,71 @@ export default function ScleraScan() {
   };
 
   return (
+<<<<<<< HEAD
+    <div className="pt-8 pb-32 space-y-6">
+      <header className="mb-6 flex items-center gap-4">
+        <button onClick={() => navigate(-1)} className="p-2 bg-white/50 rounded-full shadow-sm">
+          <svg className="w-5 h-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+        </button>
+        <div>
+          <h1 className="text-xl font-bold text-slate-800">Sclera Scanner</h1>
+          <p className="text-xs text-slate-500 font-medium">Jaundice / Icterus Detection</p>
+        </div>
+      </header>
+
+      <PermissionGate permissionState={permissionState} error={cameraError} onRequestPermission={startCamera} onRetry={startCamera}>
+        <div className="relative w-full aspect-[3/4] bg-slate-900 rounded-[36px] overflow-hidden shadow-2xl mb-6">
+          <CameraPreview stream={stream} onFrame={processFrame} className="absolute inset-0" />
+
+          {/* Eye ROI guide */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+            <div className={`w-20 h-20 border-2 rounded-full ${isScanning ? 'border-yellow-400 animate-pulse' : 'border-white/50 border-dashed'} transition-colors`} />
+          </div>
+
+          <div className="absolute inset-0 border-[40px] border-black/40 rounded-[36px] pointer-events-none" />
+
+          {!isScanning && !result && (
+            <div className="absolute bottom-10 w-full text-center px-6 z-20">
+              <p className="text-white text-sm drop-shadow-md">Look straight at the camera. Position your eye inside the circle.</p>
+            </div>
+          )}
+
+          {isScanning && (
+            <div className="absolute top-10 w-full flex justify-center z-20">
+              <div className="bg-black/50 backdrop-blur-md px-6 py-2 rounded-full border border-white/20">
+                <span className="text-yellow-400 font-bold">{progress}% Analyzing Sclera</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <GlassSurface level={3} className="p-6 rounded-3xl text-center">
+          {error ? (
+            <p className="text-red-500 font-medium mb-4">{error}</p>
+          ) : result ? (
+            <div className="mb-6 space-y-2">
+              <h3 className="text-lg font-bold text-slate-800">Scan Complete</h3>
+              <p className={`text-xl font-black ${result === 'NORMAL' ? 'text-emerald-500' : 'text-amber-500'}`}>
+                {result.replace(/_/g, ' ')}
+              </p>
+              <p className="text-xs text-slate-500">Based on scleral yellowness analysis. This is a research prototype — not a clinical diagnosis.</p>
+            </div>
+          ) : null}
+
+          {!isScanning && !result && (
+            <Button variant="primary" className="w-full py-4" onClick={startScan}>Begin Scan</Button>
+          )}
+
+          {!isScanning && result && (
+            <div className="flex gap-4">
+              <Button variant="secondary" className="flex-1" onClick={startScan}>Retake</Button>
+              <Button variant="primary" className="flex-1" onClick={handleSave}>Save</Button>
+            </div>
+          )}
+        </GlassSurface>
+=======
     <div className="pt-8 pb-32 space-y-6 w-full max-w-lg mx-auto">
       <MotionReveal delay={0}>
         <header className="mb-6 flex items-center gap-4">
@@ -178,6 +256,7 @@ export default function ScleraScan() {
             )}
           </GlassSurface>
         </MotionReveal>
+>>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
       </PermissionGate>
     </div>
   );
