@@ -1,41 +1,37 @@
-# NexAI
+# NEXAI
 
-> **An experimental AI product workspace.**
+![Cinematic hero](https://capsule-render.vercel.app/api?type=rect&color=0:070707,100:171717&height=230&text=NEXAI&fontColor=F3F3EE&fontSize=40&fontAlignY=38&desc=AI%20%2F%20PRODUCT%20EXPERIMENT&descColor=999991&descSize=12&descAlignY=66&animation=scaleIn)
 
-NexAI is part of K. Kishor Kumar's public engineering portfolio, exploring practical product ideas through modern web development and iterative prototyping.
+> **AI / PRODUCT EXPERIMENT.**
 
-## Highlights
+## THE PREMISE
 
-- Responsive product-oriented interface
-- Modular implementation designed for iteration
-- Clear separation between prototype concepts and production claims
-- Built as an independent engineering experiment
+NexAI is an AI product workspace focused on the distance between a user's intent and an actionable software experience.
 
-## Stack
+## THE EXPERIENCE
 
-React / Next.js · TypeScript
+**NexAI is an AI product workspace focused on the distance between a user's intent and an actionable software experience.**
 
-## Run locally
+## THE SYSTEM
 
-~~~bash
-npm install
-npm run dev
-~~~
+Prompt in. Context around it. Output that can become a workflow.
 
-For a production build:
+## THE STACK
 
-~~~bash
-npm run build
-~~~
+The current codebase is an experimental React/Next.js surface. The architecture is intentionally small enough to evolve without locking the product to one model provider.
 
-## Status
+## RUN
 
-**AI prototype**
+```bash
+AI product prototype
+```
 
-## Author
+## PROJECT STATE
 
-**K. Kishor Kumar** · [GitHub @Kishordiu](https://github.com/Kishordiu)
+**React / Next.js · TypeScript**
+
+This README intentionally distinguishes implemented behaviour from future integrations so the project can evolve without overstating what exists today.
 
 ---
 
-<p align="center">Built with curiosity, iteration and engineering discipline.</p>
+<p align="center"><strong>K. KISHOR KUMAR</strong><br><sub>ENGINEERING / PRODUCT / SYSTEMS</sub></p>
