@@ -13,3 +13,7 @@ yarn-error.log*
 server/nexai.sqlite
 server/nexai.sqlite-wal
 server/nexai.sqlite-shm
+
+# Test artifacts
+nexai-web/playwright-report/
+nexai-web/test-results/
