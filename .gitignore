@@ -10,10 +10,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .DS_Store
-server/nexai.sqlite
-server/nexai.sqlite-wal
-server/nexai.sqlite-shm
+
+# Runtime SQLite database snapshots
+nexai-web/server/db/*.db
+nexai-web/server/db/*.db-shm
+nexai-web/server/db/*.db-wal
+nexai-web/server/db/*.sqlite*
+nexai-web/server/.env
 
 # Test artifacts
 nexai-web/playwright-report/
 nexai-web/test-results/
+nexai-web/server/coverage/

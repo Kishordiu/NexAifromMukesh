@@ -1,0 +1,16 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Runtime SQLite database and transient WAL files
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Dependencies and logs
+node_modules/
+npm-debug.log*
+*.log

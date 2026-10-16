@@ -4,66 +4,77 @@
 
 > **A product workspace exploring the gap between AI intent and an actionable interface.**
 
-## THE PREMISE
+NexAI is an experimental maternal-health product surface built around an explicit boundary between the browser experience and server-side integrations. It is a prototype, not a validated clinical system.
 
-NexAI is an experimental AI product surface built around a simple interaction loop: understand intent, keep the context visible, and turn the model's output into something a person can actually use.
+## Repository layout
 
-## THE EXPERIENCE
+- `nexai-web/` — React/Vite frontend and PWA assets
+- `nexai-web/server/` — Express API, authentication, local SQLite persistence and server-only AI integration
+- `nexai-web/server/test/` — API authentication middleware tests
 
-**Prompt in. Context around it. Output that can become a workflow.**
+## Run locally
 
-The project combines a visual frontend with an isolated server boundary so model-backed features can evolve without exposing private credentials in the browser.
+**Requirements:** Node.js 22.5+ and npm. The API uses Node's built-in `node:sqlite` module.
 
-## THE SYSTEM
+**Terminal 1 — API server**
 
-The runnable application lives under `nexai-web/`. The frontend is a Vite/React experience, with the `server/` folder providing the backend boundary used by the product.
+```bash
+cd nexai-web/server
+npm ci
+cp .env.example .env
+```
 
-## THE STACK
+Generate a random secret with:
 
-React 19 · TypeScript/JavaScript · Vite · Tailwind CSS · Framer Motion · Tesseract.js · Playwright
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
 
-## RUN
+Set the generated value as `JWT_SECRET` inside `nexai-web/server/.env`. Add a real `DEEPSEEK_API_KEY` only if you intend to use the server-side triage integration. To provision clinician accounts, put verified clinician email addresses in `CLINICIAN_EMAILS`, separated by commas. Never allow a client to choose its own role.
+
+Then start the API:
+
+```bash
+npm start
+```
+
+The API defaults to `http://localhost:3001`.
+
+**Terminal 2 — web client**
 
 ```bash
 cd nexai-web
-npm install
+npm ci
 npm run dev
 ```
 
-For a production build:
+The client reads `VITE_API_BASE_URL` from its local environment template. Browser-visible `VITE_*` variables must contain public configuration only — never private API keys or service credentials.
+
+## Checks
+
+From `nexai-web/`:
 
 ```bash
-cd nexai-web
 npm run build
-```
-
-For the server:
-
-```bash
-cd nexai-web
-npm run server
-```
-
-For end-to-end checks:
-
-```bash
-cd nexai-web
+npm run lint
 npm run test:e2e
 ```
 
-## ENGINEERING NOTES
+From `nexai-web/server/`:
 
-- Package and lockfile merge conflicts were resolved.
-- Generated Playwright reports are excluded from version control.
-- Environment configuration stays in `.env.example`; secrets should never be committed.
-- The repository separates frontend and server responsibilities instead of embedding provider credentials in client code.
+```bash
+npm test
+```
 
-## PROJECT STATE
+The CI workflow runs the frontend build/lint checks, JavaScript syntax checks, and server authentication unit tests.
 
-**AI product prototype / active engineering workspace**
+## Security and data notes
 
-This README documents the actual repository structure and keeps future AI capabilities separate from what is currently implemented.
+- The server refuses to start in production when `JWT_SECRET` is missing, a placeholder, or too short.
+- The clinician API requires a server-provisioned `clinician` role; do not use a client-controlled role field.
+- SQLite databases and transient WAL/SHM files are created locally at runtime and must not be committed. Earlier revisions included database artifacts; those have been removed from the current source tree.
+- Triage output is experimental decision support and must not be treated as a diagnosis or emergency-response replacement. If the AI service is unconfigured, the API returns an explicit unavailable status rather than pretending that analysis ran.
+- This prototype has not been validated for real clinical use.
 
 ---
-
-<p align="center"><strong>K. KISHOR KUMAR</strong><br><sub>ENGINEERING / PRODUCT / SYSTEMS</sub></p>
+Maintained by [K. Kishor Kumar](https://github.com/Kishordiu).

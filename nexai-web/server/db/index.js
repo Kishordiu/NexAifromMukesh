@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const { DatabaseSync } = require('node:sqlite');
 const path = require('path');
 const fs = require('fs');
@@ -7,16 +6,6 @@ const dbPath = path.join(__dirname, 'nexai.db');
 const db = new DatabaseSync(dbPath);
 
 db.exec('PRAGMA journal_mode = WAL');
-=======
-const Database = require('better-sqlite3');
-const path = require('path');
-const fs = require('fs');
-
-const dbPath = path.join(__dirname, 'diumed.db');
-const db = new Database(dbPath);
-
-db.pragma('journal_mode = WAL');
->>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
 
 const initSchema = () => {
   const schema = `
@@ -118,37 +107,6 @@ const initSchema = () => {
       verification_id TEXT UNIQUE,
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
-<<<<<<< HEAD
-=======
-
-    CREATE TABLE IF NOT EXISTS domains (
-      id TEXT PRIMARY KEY,
-      title TEXT NOT NULL,
-      description TEXT,
-      category TEXT,
-      image TEXT,
-      slug TEXT UNIQUE,
-      status TEXT DEFAULT 'draft',
-      featured INTEGER DEFAULT 0,
-      display_order INTEGER DEFAULT 0,
-      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-      updated_at TEXT DEFAULT CURRENT_TIMESTAMP
-    );
-
-    CREATE TABLE IF NOT EXISTS organisers (
-      id TEXT PRIMARY KEY,
-      name TEXT NOT NULL,
-      role TEXT,
-      organization TEXT,
-      description TEXT,
-      image TEXT,
-      contact_details TEXT,
-      status TEXT DEFAULT 'active',
-      display_order INTEGER DEFAULT 0,
-      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-      updated_at TEXT DEFAULT CURRENT_TIMESTAMP
-    );
->>>>>>> 04fdc8ee73d6254fc60450a5b14882f2da59d927
   `;
   
   db.exec(schema);

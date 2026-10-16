@@ -1,0 +1,60 @@
+name: NexAI CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "nexai-web/**"
+      - "README.md"
+      - ".gitignore"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "nexai-web/**"
+      - "README.md"
+      - ".gitignore"
+      - ".github/workflows/ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: nexai-web/package-lock.json
+      - name: Install frontend dependencies
+        run: npm ci --prefix nexai-web
+      - name: Build frontend
+        run: npm run build --prefix nexai-web
+      - name: Lint frontend
+        run: npm run lint --prefix nexai-web
+
+  server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: nexai-web/server/package-lock.json
+      - name: Install API dependencies
+        run: npm ci --prefix nexai-web/server
+      - name: Check JavaScript syntax
+        shell: bash
+        run: |
+          find nexai-web/server -type f -name '*.js' -not -path '*/node_modules/*' -print0 | xargs -0 -n1 node --check
+      - name: Test authentication middleware
+        run: npm test --prefix nexai-web/server
