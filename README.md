@@ -1,5 +1,7 @@
 ![NEXAI — bespoke brushed-metal project artwork](./assets/readme-metal-hero.svg)
 
+# NEXAI
+
 [![NexAI CI](https://github.com/Kishordiu/NexAifromMukesh/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Kishordiu/NexAifromMukesh/actions/workflows/ci.yml)
 
 
