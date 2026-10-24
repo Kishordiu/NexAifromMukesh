@@ -1,8 +1,7 @@
-# NEXAI
+![NEXAI — bespoke brushed-metal project artwork](./assets/readme-metal-hero.svg)
 
 [![NexAI CI](https://github.com/Kishordiu/NexAifromMukesh/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Kishordiu/NexAifromMukesh/actions/workflows/ci.yml)
 
-![Cinematic hero](https://capsule-render.vercel.app/api?type=rect&color=0:070707,100:191919&height=230&text=NEXAI&fontColor=F3F3EE&fontSize=52&fontAlignY=38&desc=AI%20%2F%20PRODUCT%20EXPERIMENT&descColor=999991&descSize=12&descAlignY=66&animation=twinkling)
 
 > **A product workspace exploring the gap between AI intent and an actionable interface.**
 
